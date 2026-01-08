@@ -8,8 +8,8 @@ import { groupByCategory, getMonthlyData, formatCurrency } from '../utils/helper
 export default function Charts() {
     const { transactions, theme } = useFinance();
 
-    const expenseByCategory = groupByCategory(transactions, 'expense');
-    const monthlyData = getMonthlyData(transactions, 6);
+    const expenseByCategory = groupByCategory(transactions, 'expense') as Array<{ name: string; value: number; color: string;[key: string]: unknown }>;
+    const monthlyData = getMonthlyData(transactions, 6) as Array<{ month: string; income: number; expense: number;[key: string]: unknown }>;
 
     const hasExpenseData = expenseByCategory.length > 0;
     const hasMonthlyData = monthlyData.some(d => d.income > 0 || d.expense > 0);
@@ -47,7 +47,7 @@ export default function Charts() {
                                         ))}
                                     </Pie>
                                     <Tooltip
-                                        formatter={(value: number) => formatCurrency(value)}
+                                        formatter={(value) => formatCurrency(Number(value) || 0)}
                                         contentStyle={{
                                             backgroundColor: theme === 'dark' ? '#1f2937' : '#ffffff',
                                             border: 'none',
@@ -108,7 +108,7 @@ export default function Charts() {
                                     tickFormatter={(value) => `${(value / 1000000).toFixed(0)}jt`}
                                 />
                                 <Tooltip
-                                    formatter={(value: number) => formatCurrency(value)}
+                                    formatter={(value) => formatCurrency(Number(value) || 0)}
                                     contentStyle={{
                                         backgroundColor: theme === 'dark' ? '#1f2937' : '#ffffff',
                                         border: 'none',
