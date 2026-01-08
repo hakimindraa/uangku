@@ -17,7 +17,7 @@ export default function Header() {
                         </div>
                         <div>
                             <h1 className="text-xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
-                                ExpenseTracker
+                                Uangku
                             </h1>
                             <p className="text-xs text-gray-500 -mt-0.5">Kelola Keuangan Anda</p>
                         </div>
